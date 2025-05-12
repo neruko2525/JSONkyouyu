@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>キャラクターJSONアップローダー</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; }
+    input[type="file"] { margin-bottom: 1em; }
+    button { padding: 0.5em 1em; }
+    #result { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <h1>キャラクターJSONをNotionへ送信</h1>
+  <p>キャラクターのJSONファイルを選択して、Notionに送信します。</p>
+  
+  <input type="file" id="jsonFile" accept=".json">
+  <br>
+  <button onclick="handleUpload()">Notionに送信</button>
+  <div id="result"></div>
+
+  <script>
+    async function handleUpload() {
+      const fileInput = document.getElementById('jsonFile');
+      const resultDiv = document.getElementById('result');
+
+      if (!fileInput.files.length) {
+        resultDiv.textContent = '⚠️ JSONファイルを選択してください';
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const text = await file.text();
+      const data = JSON.parse(text);
+
+      const response = await fetch('/api/upload-character', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        resultDiv.textContent = '✅ Notionに送信されました';
+      } else {
+        const error = await response.text();
+        resultDiv.textContent = `❌ エラー: ${error}`;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "kind": "character",
+  "data": {
+    "name": "瀬雁  佐々良（せが ささら）",
+    "initiative": 12,
+    "externalUrl": "https://charaeno.com/6th/sfju2faax-fMqMVsJawm6",
+    "status": [
+      { "label": "HP", "value": 12, "max": 12 },
+      { "label": "MP", "value": 12, "max": 12 },
+      { "label": "SAN", "value": 60, "max": 60 }
+    ],
+    "params": [
+      { "label": "STR", "value": "9" },
+      { "label": "CON", "value": "7" },
+      { "label": "POW", "value": "12" },
+      { "label": "DEX", "value": "12" },
+      { "label": "APP", "value": "16" },
+      { "label": "SIZ", "value": "16" },
+      { "label": "INT", "value": "15" },
+      { "label": "EDU", "value": "20" },
+      { "label": "DB", "value": "+1D4" }
+    ],
+    "commands": "1D100<={SAN} 正気度ロール\nCCB<=60 幸運\n...",
+    "memo": "瀬雁  佐々良（せが ささら） (27)  贋作師 男性\n..."
+  }
+}
